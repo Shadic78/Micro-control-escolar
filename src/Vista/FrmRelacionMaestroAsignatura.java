@@ -6,6 +6,8 @@
 package Vista;
 
 import Controlador.CtrlRelacionMaestroAsignatura;
+import Modelo.ComboItem;
+import Modelo.Maestro;
 import javax.swing.JComboBox;
 
 /**
@@ -38,9 +40,6 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ComboMaestros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ComboMaestros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        ComboAsignaturas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Selecciona un maestro:");
@@ -75,11 +74,11 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,22 +103,24 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnRelacionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRelacionarActionPerformed
-        // TODO add your handling code here:
+        ComboItem maestroSeleccionado = ((ComboItem) getComboMaestros().getSelectedItem());
+        ComboItem asignaturaSeleccionada = ((ComboItem) getComboAsignaturas().getSelectedItem());        
+        ctrlForm.crearRelacion(maestroSeleccionado.getId(), asignaturaSeleccionada.getId());
     }//GEN-LAST:event_BtnRelacionarActionPerformed
 
-    public JComboBox<String> getComboAsignaturas() {
+    public JComboBox<ComboItem> getComboAsignaturas() {
         return ComboAsignaturas;
     }
 
-    public void setComboAsignaturas(JComboBox<String> ComboAsignaturas) {
+    public void setComboAsignaturas(JComboBox<ComboItem> ComboAsignaturas) {
         this.ComboAsignaturas = ComboAsignaturas;
     }
 
-    public JComboBox<String> getComboMaestros() {
+    public JComboBox<ComboItem> getComboMaestros() {
         return ComboMaestros;
     }
 
-    public void setComboMaestros(JComboBox<String> ComboMaestros) {
+    public void setComboMaestros(JComboBox<ComboItem> ComboMaestros) {
         this.ComboMaestros = ComboMaestros;
     }
 
@@ -133,8 +134,8 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnRelacionar;
-    private javax.swing.JComboBox<String> ComboAsignaturas;
-    private javax.swing.JComboBox<String> ComboMaestros;
+    private javax.swing.JComboBox<ComboItem> ComboAsignaturas;
+    private javax.swing.JComboBox<ComboItem> ComboMaestros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

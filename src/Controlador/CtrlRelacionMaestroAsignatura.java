@@ -5,8 +5,11 @@
  */
 package Controlador;
 
+import Modelo.Asignatura;
+import Modelo.ComboItem;
 import Modelo.GestorDeArchivos;
 import Modelo.InformacionArchivos;
+import Modelo.Maestro;
 import Vista.FrmRelacionMaestroAsignatura;
 
 /**
@@ -24,21 +27,26 @@ public class CtrlRelacionMaestroAsignatura {
     
     public void rellenarMaestros() {
         FrmRelacion.getComboMaestros().removeAllItems();
+        Maestro maestro;        
         for(int i = 0; i < modeloArchivos.getListaMaestros().size(); i++) {
-            FrmRelacion.getComboMaestros().addItem(modeloArchivos.getListaMaestros().get(i).getNombre());            
+            maestro = modeloArchivos.getListaMaestros().get(i);
+            FrmRelacion.getComboMaestros().addItem(new ComboItem(maestro.getClave(), maestro.getNombre() + " " + maestro.getApellido()));
         }
     }
     
     public void rellenarAsignaturas() {
         FrmRelacion.getComboAsignaturas().removeAllItems();
+        Asignatura asignatura;
         for(int i = 0; i < modeloArchivos.getListaAsignaturas().size(); i++) {
-            FrmRelacion.getComboAsignaturas().addItem(modeloArchivos.getListaAsignaturas().get(i).getNombre());            
-        }        
+            asignatura = modeloArchivos.getListaAsignaturas().get(i);
+            FrmRelacion.getComboAsignaturas().addItem(new ComboItem(asignatura.getClave(), asignatura.getNombre()));
+        }  
     }
     
     public void crearRelacion(String idMaestro, String idAsignatura) {
-        
+        System.out.println("maestro: " + idMaestro + ", asignatura: " + idAsignatura);    
     }
+    
     
     public FrmRelacionMaestroAsignatura getFrmRelacion() {
         return FrmRelacion;
