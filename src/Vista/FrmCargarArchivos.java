@@ -199,6 +199,7 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
         
         frmRelacionar.setCtrlForm(ctrlFrmRelacionar);
         ctrlFrmRelacionar.rellenarMaestros();
+        ctrlFrmRelacionar.rellenarAsignaturas();
         
         frmRelacionar.setVisible(true);
     }//GEN-LAST:event_BtnContinuarActionPerformed

@@ -30,7 +30,10 @@ public class CtrlRelacionMaestroAsignatura {
     }
     
     public void rellenarAsignaturas() {
-        
+        FrmRelacion.getComboAsignaturas().removeAllItems();
+        for(int i = 0; i < modeloArchivos.getListaAsignaturas().size(); i++) {
+            FrmRelacion.getComboAsignaturas().addItem(modeloArchivos.getListaAsignaturas().get(i).getNombre());            
+        }        
     }
     
     public void crearRelacion(String idMaestro, String idAsignatura) {
