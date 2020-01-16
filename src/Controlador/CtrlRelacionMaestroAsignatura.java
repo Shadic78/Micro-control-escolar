@@ -12,7 +12,10 @@ import Modelo.GestorDeArchivos;
 import Modelo.InformacionArchivos;
 import Modelo.Maestro;
 import Vista.FrmRelacionMaestroAsignatura;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  *
@@ -45,10 +48,13 @@ public class CtrlRelacionMaestroAsignatura {
         }  
     }
     
-    public void crearRelacion(String idMaestro, String idAsignatura) {
-        System.out.println("maestro: " + idMaestro + ", asignatura: " + idAsignatura);    
+    public void crearRelacion(String idMaestro, String idAsignatura) throws IOException {
         if(!isRepeated(idMaestro, idAsignatura)) {
-            //gestor.addTextoArchivo(idMaestro + "," + idAsignatura, modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv");
+            gestor.addTextoArchivo(idMaestro + "," + idAsignatura, modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv");
+            JOptionPane.showMessageDialog(null, "Relacion creada");            
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "La relacion ya existe", "Error", ERROR_MESSAGE);
         }
     }
     
@@ -59,7 +65,7 @@ public class CtrlRelacionMaestroAsignatura {
             String[] datos = lineasArchivo.get(i).split(",");
             if(datos[0].equals(idMaestro) && datos[1].equals(idAsignatura)) {
                 repetido = true;
-                System.out.println("Repetidos: " + datos[0] + " - " + datos[1]);
+                //System.out.println("Repetidos: " + datos[0] + " - " + datos[1]);
                 break;
             }
         }

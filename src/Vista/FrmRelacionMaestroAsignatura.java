@@ -8,7 +8,11 @@ package Vista;
 import Controlador.CtrlRelacionMaestroAsignatura;
 import Modelo.ComboItem;
 import Modelo.Maestro;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,8 +108,12 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
 
     private void BtnRelacionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRelacionarActionPerformed
         ComboItem maestroSeleccionado = ((ComboItem) getComboMaestros().getSelectedItem());
-        ComboItem asignaturaSeleccionada = ((ComboItem) getComboAsignaturas().getSelectedItem());        
-        ctrlForm.crearRelacion(maestroSeleccionado.getId(), asignaturaSeleccionada.getId());
+        ComboItem asignaturaSeleccionada = ((ComboItem) getComboAsignaturas().getSelectedItem()); 
+        try {
+            ctrlForm.crearRelacion(maestroSeleccionado.getId(), asignaturaSeleccionada.getId());            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear la relacion", "ERROR", HEIGHT);
+        }
     }//GEN-LAST:event_BtnRelacionarActionPerformed
 
     public JComboBox<ComboItem> getComboAsignaturas() {

@@ -6,8 +6,10 @@
 package Modelo;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
@@ -89,9 +91,22 @@ public class GestorDeArchivos {
         return lineas;   
     }
     
-    public void addTextoArchivo(String texto, String rutaArchivo) {
+    public void addTextoArchivo(String texto, String rutaArchivo) throws IOException {
         if(existeArchivo(rutaArchivo)) {
-            
+            //System.out.println("existe el archivo");
+            FileWriter writer = new FileWriter(rutaArchivo, true);
+            BufferedWriter bw = new BufferedWriter(writer);
+            bw.write("\n" + texto);
+            bw.close();
+            writer.close();            
+        }
+        else{
+            //System.out.println("no existe el archivo");
+            FileWriter writer = new FileWriter(rutaArchivo);
+            BufferedWriter bw = new BufferedWriter(writer);
+            bw.write(texto);  
+            bw.close();
+            writer.close();
         }
     }
     

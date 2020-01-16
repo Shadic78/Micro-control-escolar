@@ -166,21 +166,18 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
     private void BtnCargarMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarMaestrosActionPerformed
         File archivoSeleccionado = gestor.cargarArchivo();
         modeloArchivos.setListaMaestros(controlArchivos.obtenerMaestros(archivoSeleccionado.getAbsolutePath()));
-        System.out.println(modeloArchivos.getListaMaestros());
         getTxtRutaMaestros().setText(archivoSeleccionado.getAbsolutePath());
     }//GEN-LAST:event_BtnCargarMaestrosActionPerformed
 
     private void BtnCargarAsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarAsignaturasActionPerformed
         File archivoSeleccionado = gestor.cargarArchivo();
         modeloArchivos.setListaAsignaturas(controlArchivos.obtenerAsignaturas(archivoSeleccionado.getAbsolutePath()));
-        System.out.println(modeloArchivos.getListaAsignaturas());
         getTxtRutaAsignaturas().setText(archivoSeleccionado.getAbsolutePath());
     }//GEN-LAST:event_BtnCargarAsignaturasActionPerformed
 
     private void BtnCargarAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarAlumnosActionPerformed
         File archivoSeleccionado = gestor.cargarArchivo();
         modeloArchivos.setListaAlumnos(controlArchivos.obtenerAlumnos(archivoSeleccionado.getAbsolutePath()));
-        System.out.println(modeloArchivos.getListaAlumnos());
         getTxtRutaAlumnos().setText(archivoSeleccionado.getAbsolutePath());  
     }//GEN-LAST:event_BtnCargarAlumnosActionPerformed
 
@@ -202,6 +199,7 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
         ctrlFrmRelacionar.rellenarAsignaturas();
         
         frmRelacionar.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnContinuarActionPerformed
 
     public JLabel getTxtRutaAlumnos() {
