@@ -5,12 +5,14 @@
  */
 package Controlador;
 
+import Modelo.Archivos;
 import Modelo.Asignatura;
 import Modelo.ComboItem;
 import Modelo.GestorDeArchivos;
 import Modelo.InformacionArchivos;
 import Modelo.Maestro;
 import Vista.FrmRelacionMaestroAsignatura;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,8 +47,24 @@ public class CtrlRelacionMaestroAsignatura {
     
     public void crearRelacion(String idMaestro, String idAsignatura) {
         System.out.println("maestro: " + idMaestro + ", asignatura: " + idAsignatura);    
+        if(!isRepeated(idMaestro, idAsignatura)) {
+            //gestor.addTextoArchivo(idMaestro + "," + idAsignatura, modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv");
+        }
     }
     
+    public boolean isRepeated(String idMaestro, String idAsignatura) {
+        boolean repetido = false;
+        ArrayList<String> lineasArchivo = gestor.getLineasArchivo(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv");
+        for(int i = 0; i < lineasArchivo.size(); i++) {
+            String[] datos = lineasArchivo.get(i).split(",");
+            if(datos[0].equals(idMaestro) && datos[1].equals(idAsignatura)) {
+                repetido = true;
+                System.out.println("Repetidos: " + datos[0] + " - " + datos[1]);
+                break;
+            }
+        }
+        return repetido;
+    }
     
     public FrmRelacionMaestroAsignatura getFrmRelacion() {
         return FrmRelacion;
@@ -71,5 +89,5 @@ public class CtrlRelacionMaestroAsignatura {
     public void setGestor(GestorDeArchivos gestor) {
         this.gestor = gestor;
     }
-        
+            
 }

@@ -88,5 +88,20 @@ public class GestorDeArchivos {
         }
         return lineas;   
     }
+    
+    public void addTextoArchivo(String texto, String rutaArchivo) {
+        if(existeArchivo(rutaArchivo)) {
+            
+        }
+    }
+    
+    public boolean existeArchivo(String rutaArchivo) {
+        boolean existe = false;
+        File archivo = new File(rutaArchivo);
+        if(archivo.exists()) {
+            existe = true;
+        }
+        return existe;
+    }
 
 }
