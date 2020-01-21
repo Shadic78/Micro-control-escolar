@@ -186,17 +186,8 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRutaGuardadoActionPerformed
 
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
-        FrmRelacionMaestroAsignatura frmRelacionar = new FrmRelacionMaestroAsignatura();
-        
-        CtrlRelacionMaestroAsignatura ctrlFrmRelacionar = new CtrlRelacionMaestroAsignatura();
-        ctrlFrmRelacionar.setModeloArchivos(modeloArchivos);
-        ctrlFrmRelacionar.setFrmRelacion(frmRelacionar);
-        
-        frmRelacionar.setCtrlForm(ctrlFrmRelacionar);
-        ctrlFrmRelacionar.rellenarMaestros();
-        ctrlFrmRelacionar.rellenarAsignaturas();
-        
-        frmRelacionar.setVisible(true);
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setModeloArchivos(modeloArchivos);
         this.dispose();
     }//GEN-LAST:event_BtnContinuarActionPerformed
 
