@@ -188,6 +188,7 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
         MenuPrincipal menu = new MenuPrincipal();
         menu.setModeloArchivos(modeloArchivos);
+        menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnContinuarActionPerformed
 
