@@ -6,7 +6,6 @@
 package Vista;
 
 import Controlador.CtrlCargarArchivos;
-import Modelo.Archivos;
 import java.io.File;
 
 /**

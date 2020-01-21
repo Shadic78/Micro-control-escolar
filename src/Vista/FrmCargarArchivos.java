@@ -7,7 +7,6 @@ package Vista;
 
 import Controlador.CtrlCargarArchivos;
 import Controlador.CtrlRelacionMaestroAsignatura;
-import Modelo.Archivos;
 import Modelo.GestorDeArchivos;
 import Modelo.InformacionArchivos;
 import java.io.File;
@@ -54,7 +53,6 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         BtnCargarMaestros.setText("Cargar maestros");
         BtnCargarMaestros.addActionListener(new java.awt.event.ActionListener() {
