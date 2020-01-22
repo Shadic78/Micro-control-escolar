@@ -42,7 +42,16 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ComboAlumnos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ComboMaestros.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboMaestrosItemStateChanged(evt);
+            }
+        });
+        ComboMaestros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboMaestrosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Selecciona un alumno:");
@@ -126,6 +135,19 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnRelacionarActionPerformed
 
+    private void ComboMaestrosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboMaestrosItemStateChanged
+    }//GEN-LAST:event_ComboMaestrosItemStateChanged
+
+    private void ComboMaestrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboMaestrosActionPerformed
+            ComboItem maestroSeleccionado = ((ComboItem) getComboMaestros().getSelectedItem());
+            if(maestroSeleccionado != null) {
+                ctrlForm.rellenarAsignaturas(maestroSeleccionado.getId());                
+            }
+            else {
+                getComboAsignaturas().removeAllItems();
+            }
+    }//GEN-LAST:event_ComboMaestrosActionPerformed
+
     public JComboBox<ComboItem> getComboAlumnos() {
         return ComboAlumnos;
     }
@@ -135,19 +157,19 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
     }
 
     public JComboBox<ComboItem> getComboAsignaturas() {
-        return ComboMaestros;
+        return ComboAsignaturas;
     }
 
     public void setComboAsignaturas(JComboBox<ComboItem> ComboAsignaturas) {
-        this.ComboMaestros = ComboAsignaturas;
+        this.ComboAsignaturas = ComboAsignaturas;
     }
 
     public JComboBox<ComboItem> getComboMaestros() {
-        return ComboAlumnos;
+        return ComboMaestros;
     }
 
     public void setComboMaestros(JComboBox<ComboItem> ComboMaestros) {
-        this.ComboAlumnos = ComboMaestros;
+        this.ComboMaestros = ComboMaestros;
     }
 
     public CtrlInscribirAlumnoAsignatura getCtrlForm() {

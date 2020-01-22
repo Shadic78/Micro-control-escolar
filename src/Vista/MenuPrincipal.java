@@ -148,7 +148,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         frmRelacionar.setCtrlForm(ctrlFrmRelacionar);
         ctrlFrmRelacionar.rellenarAlumnos();        
         ctrlFrmRelacionar.rellenarMaestros();
-        ctrlFrmRelacionar.rellenarAsignaturas();
         
         frmRelacionar.setVisible(true);
         this.dispose();        
