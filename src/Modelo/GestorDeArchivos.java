@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
  * @author Usuario
  */
 public class GestorDeArchivos {
+
     private JFileChooser chooser;
 
     public File cargarArchivo() {
@@ -72,7 +73,7 @@ public class GestorDeArchivos {
         }
         return texto;
     }
-    
+
     public ArrayList<String> getLineasArchivo(String rutaArchivo) {
         BufferedReader reader;
         ArrayList<String> lineas = new ArrayList<String>();
@@ -88,32 +89,34 @@ public class GestorDeArchivos {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return lineas;   
+        return lineas;
     }
-    
+
     public void addTextoArchivo(String texto, String rutaArchivo) throws IOException {
-        if(existeArchivo(rutaArchivo)) {
-            //System.out.println("existe el archivo");
+        if (existeArchivo(rutaArchivo)) {
             FileWriter writer = new FileWriter(rutaArchivo, true);
             BufferedWriter bw = new BufferedWriter(writer);
-            bw.write("\n" + texto);
+            if (getLineasArchivo(rutaArchivo).size() > 0) {
+                bw.write("\n" + texto);
+            } else {
+                bw.write(texto);
+            }
             bw.close();
-            writer.close();            
-        }
-        else{
+            writer.close();
+        } else {
             //System.out.println("no existe el archivo");
             FileWriter writer = new FileWriter(rutaArchivo);
             BufferedWriter bw = new BufferedWriter(writer);
-            bw.write(texto);  
+            bw.write(texto);
             bw.close();
             writer.close();
         }
     }
-    
+
     public boolean existeArchivo(String rutaArchivo) {
         boolean existe = false;
         File archivo = new File(rutaArchivo);
-        if(archivo.exists()) {
+        if (archivo.exists()) {
             existe = true;
         }
         return existe;

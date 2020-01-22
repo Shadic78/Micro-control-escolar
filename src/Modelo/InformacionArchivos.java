@@ -16,6 +16,7 @@ public class InformacionArchivos {
     private ArrayList<Maestro> listaMaestros;
     private ArrayList<Asignatura> listaAsignaturas;
     private ArrayList<Alumno> listaAlumnos;
+    private ArrayList<CursoImpartido> listaCursosImpartidos;
     private File rutaDeGuardado;
 
     public ArrayList<Maestro> getListaMaestros() {
@@ -48,6 +49,14 @@ public class InformacionArchivos {
 
     public void setRutaDeGuardado(File rutaDeGuardado) {
         this.rutaDeGuardado = rutaDeGuardado;
+    }
+
+    public ArrayList<CursoImpartido> getListaCursosImpartidos() {
+        return listaCursosImpartidos;
+    }
+
+    public void setListaCursosImpartidos(ArrayList<CursoImpartido> listaCursosImpartidos) {
+        this.listaCursosImpartidos = listaCursosImpartidos;
     }
         
 }

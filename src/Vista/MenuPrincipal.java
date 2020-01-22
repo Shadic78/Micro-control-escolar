@@ -46,7 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         BtnInscribirAlumnos = new javax.swing.JButton();
         BtnListasAsistencia = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
+        BtnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +71,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         BtnListasAsistencia.setText("Listas de asistencia");
 
-        jButton4.setText("Salir");
+        BtnSalir.setText("Salir");
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +87,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(BtnSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(BtnMaestroAsignatura)
@@ -116,7 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(BtnSalir)
                 .addGap(12, 12, 12))
         );
 
@@ -153,12 +158,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();        
     }//GEN-LAST:event_BtnInscribirAlumnosActionPerformed
 
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnInscribirAlumnos;
     private javax.swing.JButton BtnListasAsistencia;
     private javax.swing.JButton BtnMaestroAsignatura;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton BtnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator2;
