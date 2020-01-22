@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtrlGenerarListasAsistencia;
 import Controlador.CtrlInscribirAlumnoAsignatura;
 import Controlador.CtrlRelacionMaestroAsignatura;
 import Modelo.InformacionArchivos;
@@ -70,6 +71,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         BtnListasAsistencia.setText("Listas de asistencia");
+        BtnListasAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnListasAsistenciaActionPerformed(evt);
+            }
+        });
 
         BtnSalir.setText("Salir");
         BtnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +167,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnListasAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListasAsistenciaActionPerformed
+        FrmGenerarListasAsistencia frmGenerarListas = new FrmGenerarListasAsistencia();
+        
+        CtrlGenerarListasAsistencia ctrlGenerarListas = new CtrlGenerarListasAsistencia();
+        ctrlGenerarListas.setModeloArchivos(modeloArchivos);
+        ctrlGenerarListas.setFrmRelacion(frmGenerarListas);
+        
+        frmGenerarListas.setCtrlForm(ctrlGenerarListas);
+        ctrlGenerarListas.rellenarMaestros();
+        
+        frmGenerarListas.setVisible(true);
+        this.dispose();                
+    }//GEN-LAST:event_BtnListasAsistenciaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

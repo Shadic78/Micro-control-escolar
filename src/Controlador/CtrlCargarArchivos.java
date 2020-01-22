@@ -62,7 +62,6 @@ public class CtrlCargarArchivos {
     */
     public ArrayList<CursoImpartido> obtenerCursosImpartidos(String ruta) {
         lineasArchivo = gestor.getLineasArchivo(ruta);        
-        System.out.println(lineasArchivo.size());
         ArrayList<CursoImpartido> cursos = new ArrayList<CursoImpartido>();
         ArrayList<String> lineasArchivoInscripciones = gestor.getLineasArchivo(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionAlumnoMaestroAsignatura.csv");                    
         

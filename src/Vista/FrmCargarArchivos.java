@@ -187,7 +187,7 @@ public class FrmCargarArchivos extends javax.swing.JFrame {
 
     private void BtnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContinuarActionPerformed
         controlArchivos.setModeloArchivos(modeloArchivos);
-        System.out.println(controlArchivos.obtenerCursosImpartidos(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv"));
+        modeloArchivos.setListaCursosImpartidos(controlArchivos.obtenerCursosImpartidos(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv"));
         MenuPrincipal menu = new MenuPrincipal();
         menu.setModeloArchivos(modeloArchivos);
         menu.setVisible(true);
