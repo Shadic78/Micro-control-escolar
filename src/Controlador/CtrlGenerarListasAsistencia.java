@@ -29,8 +29,8 @@ public class CtrlGenerarListasAsistencia {
     }
     
     public void generarListaAsistencia(String idMaestro, String idAsignatura) {
+        ArrayList<CursoImpartido> listaCursos = modeloArchivos.getListaCursosImpartidos();        
         CursoImpartido curso = new CursoImpartido();
-        ArrayList<CursoImpartido> listaCursos = modeloArchivos.getListaCursosImpartidos();
         for(int i = 0; i < listaCursos.size(); i++) {
             if(listaCursos.get(i).getMaestro().getClave().equals(idMaestro) && listaCursos.get(i).getAsignatura().getClave().equals(idAsignatura)) {
                 curso = listaCursos.get(i);
