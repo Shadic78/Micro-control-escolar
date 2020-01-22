@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtrlInscribirAlumnoAsignatura;
 import Controlador.CtrlRelacionMaestroAsignatura;
 import Modelo.InformacionArchivos;
 
@@ -62,6 +63,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         BtnInscribirAlumnos.setText("Inscribir alumnos");
+        BtnInscribirAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnInscribirAlumnosActionPerformed(evt);
+            }
+        });
 
         BtnListasAsistencia.setText("Listas de asistencia");
 
@@ -131,6 +137,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         frmRelacionar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnMaestroAsignaturaActionPerformed
+
+    private void BtnInscribirAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInscribirAlumnosActionPerformed
+        FrmInscribirAlumnoAsignatura frmRelacionar = new FrmInscribirAlumnoAsignatura();
+        
+        CtrlInscribirAlumnoAsignatura ctrlFrmRelacionar = new CtrlInscribirAlumnoAsignatura();
+        ctrlFrmRelacionar.setModeloArchivos(modeloArchivos);
+        ctrlFrmRelacionar.setFrmRelacion(frmRelacionar);
+        
+        frmRelacionar.setCtrlForm(ctrlFrmRelacionar);
+        ctrlFrmRelacionar.rellenarAlumnos();        
+        ctrlFrmRelacionar.rellenarMaestros();
+        ctrlFrmRelacionar.rellenarAsignaturas();
+        
+        frmRelacionar.setVisible(true);
+        this.dispose();        
+    }//GEN-LAST:event_BtnInscribirAlumnosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
