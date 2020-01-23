@@ -13,8 +13,20 @@ import Modelo.GestorDeArchivos;
 import Modelo.InformacionArchivos;
 import Modelo.Maestro;
 import Vista.FrmGenerarListasAsistencia;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Font;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,11 +48,57 @@ public class CtrlGenerarListasAsistencia {
         for(int i = 0; i < listaCursos.size(); i++) {
             if(listaCursos.get(i).getMaestro().getClave().equals(idMaestro) && listaCursos.get(i).getAsignatura().getClave().equals(idAsignatura)) {
                 curso = listaCursos.get(i);
-                System.out.println("Sin ordenar: ");
-                System.out.println(curso.getListaAlumnos());
-                System.out.println("Ordenado: ");
-                System.out.println(ordenarAlumnosAlfabeticamente(curso.getListaAlumnos()));
+                break;
             }
+        }
+        crearPDF(curso, ordenarAlumnosAlfabeticamente(curso.getListaAlumnos()));
+    }
+
+    public void crearPDF(CursoImpartido curso, ArrayList<String> listaAlumnos) {
+        try {
+            // Se crea el documento
+            Document documento = new Document();
+            // El OutPutStream para el fichero donde crearemos el PDF
+            FileOutputStream ficheroPDF;
+            String nombreArchivoResultante = curso.getAsignatura().getNombre() + curso.getMaestro().getApellido() + curso.getMaestro().getNombre() + ".pdf";
+            ficheroPDF = new FileOutputStream(modeloArchivos.getRutaDeGuardado().getAbsolutePath()+ "/" + nombreArchivoResultante);
+            // Se asocia el documento de OutPutStream
+            PdfWriter.getInstance(documento, ficheroPDF);          
+            // Se abre el documento
+            documento.open();
+            
+            // Parrafo
+            Paragraph titulo = new Paragraph(curso.getAsignatura().getNombre() + "\n" + curso.getMaestro().getNombre() + " " +  curso.getMaestro().getApellido() + "\n\n",
+                    FontFactory.getFont("arial",
+                            18,
+                            Font.BOLD
+                    )
+            );
+            titulo.setAlignment(Paragraph.ALIGN_CENTER);
+            // Añadimos el titulo al documento
+            documento.add(titulo);
+            
+            // Creamos una tabla
+            PdfPTable tabla = new PdfPTable(3);
+            tabla.addCell("Id");
+            tabla.addCell("Nombre");
+            tabla.addCell("Asistencia");
+
+            for (int i = 0; i < listaAlumnos.size(); i++) {
+                tabla.addCell("" + i);
+                tabla.addCell(listaAlumnos.get(i));
+                tabla.addCell(" ");
+            }
+            
+            // Añadimos la tabla al documento
+            documento.add(tabla);
+            
+            // Se cierra el documento
+            documento.close();
+        } catch (DocumentException ex) {
+            Logger.getLogger(CtrlGenerarListasAsistencia.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CtrlGenerarListasAsistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

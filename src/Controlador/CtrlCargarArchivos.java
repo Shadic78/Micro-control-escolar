@@ -80,7 +80,6 @@ public class CtrlCargarArchivos {
                 }
             }
             cursos.add(cursoNuevo);
-            System.out.println(cursoNuevo);
         }
         
         return cursos;
