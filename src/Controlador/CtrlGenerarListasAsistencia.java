@@ -60,7 +60,7 @@ public class CtrlGenerarListasAsistencia {
             Document documento = new Document();
             // El OutPutStream para el fichero donde crearemos el PDF
             FileOutputStream ficheroPDF;
-            String nombreArchivoResultante = curso.getAsignatura().getNombre() + curso.getMaestro().getApellido() + curso.getMaestro().getNombre() + ".pdf";
+            String nombreArchivoResultante = curso.getMaestro().getApellido() + curso.getMaestro().getNombre() + curso.getAsignatura().getNombre()  + ".pdf";
             ficheroPDF = new FileOutputStream(modeloArchivos.getRutaDeGuardado().getAbsolutePath()+ "/" + nombreArchivoResultante);
             // Se asocia el documento de OutPutStream
             PdfWriter.getInstance(documento, ficheroPDF);          

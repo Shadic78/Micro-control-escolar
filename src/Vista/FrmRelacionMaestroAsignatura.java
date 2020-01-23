@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtrlCargarArchivos;
 import Controlador.CtrlRelacionMaestroAsignatura;
 import Modelo.ComboItem;
 import Modelo.Maestro;
@@ -19,7 +20,8 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
-    CtrlRelacionMaestroAsignatura ctrlForm;
+    private CtrlRelacionMaestroAsignatura ctrlForm;
+    private CtrlCargarArchivos controlArchivos;
     
     public FrmRelacionMaestroAsignatura() {
         initComponents();
@@ -40,10 +42,9 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         BtnRelacionar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        BtnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ComboMaestros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Selecciona un maestro:");
@@ -60,6 +61,13 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Relacion maestro - asignatura");
+
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,7 +90,10 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnRegresar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,7 +111,9 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
                     .addComponent(ComboAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(BtnRegresar)
+                .addContainerGap())
         );
 
         pack();
@@ -115,6 +128,20 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al crear la relacion", "ERROR", HEIGHT);
         }
     }//GEN-LAST:event_BtnRelacionarActionPerformed
+
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        // Actualizar la lista de cursos
+        controlArchivos = new CtrlCargarArchivos();
+        controlArchivos.setModeloArchivos(ctrlForm.getModeloArchivos());
+        ctrlForm.getModeloArchivos()
+                .setListaCursosImpartidos(controlArchivos.
+                        obtenerCursosImpartidos(ctrlForm.getModeloArchivos()
+                                .getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv"));  
+        // Crear el menu principal
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setModeloArchivos(ctrlForm.getModeloArchivos());
+        menu.setVisible(true);
+        this.dispose();    }//GEN-LAST:event_BtnRegresarActionPerformed
 
     public JComboBox<ComboItem> getComboAsignaturas() {
         return ComboAsignaturas;
@@ -141,6 +168,7 @@ public class FrmRelacionMaestroAsignatura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton BtnRelacionar;
     private javax.swing.JComboBox<ComboItem> ComboAsignaturas;
     private javax.swing.JComboBox<ComboItem> ComboMaestros;

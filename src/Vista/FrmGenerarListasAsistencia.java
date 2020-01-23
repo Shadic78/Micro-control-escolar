@@ -5,9 +5,11 @@
  */
 package Vista;
 
+import Controlador.CtrlCargarArchivos;
 import Controlador.CtrlGenerarListasAsistencia;
 import Controlador.CtrlInscribirAlumnoAsignatura;
 import Modelo.ComboItem;
+import Modelo.InformacionArchivos;
 import java.io.IOException;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
-    CtrlGenerarListasAsistencia ctrlForm;
+    private CtrlGenerarListasAsistencia ctrlForm;
     
     public FrmGenerarListasAsistencia() {
         initComponents();
@@ -38,6 +40,7 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ComboAsignaturas = new javax.swing.JComboBox<>();
+        BtnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +71,13 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Selecciona una asignatura:");
 
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,6 +100,10 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addComponent(jLabel3)))
                 .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BtnRegresar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +122,9 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
                         .addComponent(ComboMaestros, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
                 .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(BtnRegresar)
+                .addContainerGap())
         );
 
         pack();
@@ -132,6 +148,13 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
                 getComboAsignaturas().removeAllItems();
             }
     }//GEN-LAST:event_ComboMaestrosActionPerformed
+
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setModeloArchivos(ctrlForm.getModeloArchivos());
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnRegresarActionPerformed
 
     public JComboBox<ComboItem> getComboAsignaturas() {
         return ComboAsignaturas;
@@ -158,6 +181,7 @@ public class FrmGenerarListasAsistencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton BtnRelacionar;
     private javax.swing.JComboBox<ComboItem> ComboAsignaturas;
     private javax.swing.JComboBox<ComboItem> ComboMaestros;

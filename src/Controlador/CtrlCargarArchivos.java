@@ -61,25 +61,26 @@ public class CtrlCargarArchivos {
         el parametro es la ruta del archivo de relacion maestro-asignatura
     */
     public ArrayList<CursoImpartido> obtenerCursosImpartidos(String ruta) {
-        lineasArchivo = gestor.getLineasArchivo(ruta);        
+        lineasArchivo = gestor.getLineasArchivo(ruta);
         ArrayList<CursoImpartido> cursos = new ArrayList<CursoImpartido>();
-        ArrayList<String> lineasArchivoInscripciones = gestor.getLineasArchivo(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionAlumnoMaestroAsignatura.csv");                    
-        
-        for(int i = 0; i < lineasArchivo.size(); i++) {
-            String[] datos = lineasArchivo.get(i).split(",");
-            CursoImpartido cursoNuevo = new CursoImpartido();
-            Maestro maestro = getMaestroPorId(datos[0]);
-            Asignatura asignatura = getAsignaturaPorId(datos[1]);
-            cursoNuevo.setMaestro(maestro);
-            cursoNuevo.setAsignatura(asignatura);;
-            for(int j = 0; j < lineasArchivoInscripciones.size(); j++) {
-                String[] datosInscripciones = lineasArchivoInscripciones.get(j).split(",");
-                if(datosInscripciones[1].equals(maestro.getClave()) && datosInscripciones[2].equals(asignatura.getClave())) {
-                    Alumno alumoNuevo = getAlumnoPorId(datosInscripciones[0]);
-                    cursoNuevo.inscribirAlumno(alumoNuevo);
+        ArrayList<String> lineasArchivoInscripciones = gestor.getLineasArchivo(modeloArchivos.getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionAlumnoMaestroAsignatura.csv");
+        if (lineasArchivo.size() > 0 && lineasArchivoInscripciones.size() > 0) {
+            for (int i = 0; i < lineasArchivo.size(); i++) {
+                String[] datos = lineasArchivo.get(i).split(",");
+                CursoImpartido cursoNuevo = new CursoImpartido();
+                Maestro maestro = getMaestroPorId(datos[0]);
+                Asignatura asignatura = getAsignaturaPorId(datos[1]);
+                cursoNuevo.setMaestro(maestro);
+                cursoNuevo.setAsignatura(asignatura);;
+                for (int j = 0; j < lineasArchivoInscripciones.size(); j++) {
+                    String[] datosInscripciones = lineasArchivoInscripciones.get(j).split(",");
+                    if (datosInscripciones[1].equals(maestro.getClave()) && datosInscripciones[2].equals(asignatura.getClave())) {
+                        Alumno alumoNuevo = getAlumnoPorId(datosInscripciones[0]);
+                        cursoNuevo.inscribirAlumno(alumoNuevo);
+                    }
                 }
-            }
-            cursos.add(cursoNuevo);
+                cursos.add(cursoNuevo);
+            }        
         }
         
         return cursos;

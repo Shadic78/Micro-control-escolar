@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.CtrlCargarArchivos;
 import Controlador.CtrlInscribirAlumnoAsignatura;
 import Modelo.ComboItem;
 import java.io.IOException;
@@ -16,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
-    CtrlInscribirAlumnoAsignatura ctrlForm;
+    private CtrlInscribirAlumnoAsignatura ctrlForm;
+    private CtrlCargarArchivos controlArchivos;
     
     public FrmInscribirAlumnoAsignatura() {
         initComponents();
@@ -39,6 +41,7 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         ComboAsignaturas = new javax.swing.JComboBox<>();
+        BtnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +75,13 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Selecciona una asignatura:");
 
+        BtnRegresar.setText("Regresar");
+        BtnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,7 +104,10 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
                             .addComponent(ComboAsignaturas, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(206, 206, 206)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnRegresar)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,7 +131,9 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
                         .addComponent(ComboMaestros, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(BtnRelacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnRegresar)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -147,6 +162,21 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
                 getComboAsignaturas().removeAllItems();
             }
     }//GEN-LAST:event_ComboMaestrosActionPerformed
+
+    private void BtnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegresarActionPerformed
+        // Actualizar la lista de cursos
+        controlArchivos = new CtrlCargarArchivos();
+        controlArchivos.setModeloArchivos(ctrlForm.getModeloArchivos());
+        ctrlForm.getModeloArchivos()
+                .setListaCursosImpartidos(controlArchivos.
+                        obtenerCursosImpartidos(ctrlForm.getModeloArchivos()
+                                .getRutaDeGuardado().getAbsolutePath() + "/" + "RelacionMaestroAsignatura.csv"));  
+        // Crear el menu principal
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setModeloArchivos(ctrlForm.getModeloArchivos());
+        menu.setVisible(true);
+        this.dispose();
+     }//GEN-LAST:event_BtnRegresarActionPerformed
 
     public JComboBox<ComboItem> getComboAlumnos() {
         return ComboAlumnos;
@@ -181,6 +211,7 @@ public class FrmInscribirAlumnoAsignatura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRegresar;
     private javax.swing.JButton BtnRelacionar;
     private javax.swing.JComboBox<ComboItem> ComboAlumnos;
     private javax.swing.JComboBox<ComboItem> ComboAsignaturas;
