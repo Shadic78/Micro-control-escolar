@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.Alumno;
 import Modelo.Asignatura;
 import Modelo.ComboItem;
 import Modelo.CursoImpartido;
@@ -13,6 +14,7 @@ import Modelo.InformacionArchivos;
 import Modelo.Maestro;
 import Vista.FrmGenerarListasAsistencia;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -34,9 +36,21 @@ public class CtrlGenerarListasAsistencia {
         for(int i = 0; i < listaCursos.size(); i++) {
             if(listaCursos.get(i).getMaestro().getClave().equals(idMaestro) && listaCursos.get(i).getAsignatura().getClave().equals(idAsignatura)) {
                 curso = listaCursos.get(i);
+                System.out.println("Sin ordenar: ");
                 System.out.println(curso.getListaAlumnos());
+                System.out.println("Ordenado: ");
+                System.out.println(ordenarAlumnosAlfabeticamente(curso.getListaAlumnos()));
             }
         }
+    }
+    
+    public ArrayList<String> ordenarAlumnosAlfabeticamente(ArrayList<Alumno> listaAlumnos) {
+        ArrayList<String> listaAlumnosOrdenada = new ArrayList<String>();
+        for(int i = 0; i < listaAlumnos.size(); i++) {
+            listaAlumnosOrdenada.add(listaAlumnos.get(i).getApellido() + " " + listaAlumnos.get(i).getNombre());
+        }
+        Collections.sort(listaAlumnosOrdenada);
+        return listaAlumnosOrdenada;
     }
     
     public void rellenarMaestros() {
